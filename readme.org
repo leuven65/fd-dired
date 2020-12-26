@@ -1,0 +1,55 @@
+# -*- coding: utf-8; org-download-method: directory; org-download-image-dir: "./image"; -*-
+#+TITLE: fd-dired
+#+AUTHOR: Jian Wang
+#+DATE: 2020-12-26
+
+* About
+"fd-dired" is to run the fd [[https://github.com/sharkdp/fd]] command and output the result to dired
+mode, as similar as "find-dired".
+
+It is very useful tool if we want to operate specific files together which are not in same folder.
+
+** Run the command "fd-dired"
+1. Input the fd comand arguments (or with "C-u" to specify the initial directory or use the current working directly)
+   #+DOWNLOADED: screenshot @ 2020-12-26 13:56:44
+   [[file:image/About/2020-12-26_13-56-44_screenshot.png]]
+2. The result will be in dired mode, as same as "find-dired"
+   #+DOWNLOADED: screenshot @ 2020-12-26 14:00:36
+   [[file:image/About/2020-12-26_14-00-36_screenshot.png]]
+
+3. Run from eshell command
+   #+DOWNLOADED: screenshot @ 2020-12-26 14:20:35
+   [[file:image/About/2020-12-26_14-20-35_screenshot.png]]
+
+4. Run from ~helm-find-files~
+   #+DOWNLOADED: screenshot @ 2020-12-26 14:22:01
+   [[file:image/About/2020-12-26_14-22-01_screenshot.png]]
+
+* Installation
+
+** pre-require
+Please intall [[https://github.com/sharkdp/fd]] firstly, and make sure the command "fd" in the system path.
+
+** install
+Clone this git repo to "${user-emacs-directory}/packages/fd-dired", and add folowing lines to Emacs
+config file:
+#+begin_src emacs-lisp
+  (use-package fd-dired
+    :defer t
+    :ensure nil ; it is github package
+    ;; If the path is relative, it is expanded within `user-emacs-directory'
+    :load-path "packages/fd-dired"
+    :init
+    (let ((pkg-name "fd-dired"))
+      (ignore-errors
+        (package-generate-autoloads pkg-name
+                                    (expand-file-name (concat "packages/" pkg-name)
+                                                      user-emacs-directory)))
+      (load (concat pkg-name "-autoloads.el")))
+    )
+#+end_src
+
+* Usage
+1. in "M-x", run the command "fd-dired", or with "C-u" to specify the directory.
+2. in eshell, run the command "fd"
+3. in helm-find-files, select the action "find dired by fd"
