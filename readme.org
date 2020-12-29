@@ -9,6 +9,9 @@ mode, as similar as "find-dired".
 
 It is very useful tool if we want to operate specific files together which are not in same folder.
 
+[2020-12-29 Tue] I found there is already an elisp package [[https://github.com/yqrashawn/fd-dired]]
+also named "fd-dired", but the implementation is different.
+
 ** Run the command "fd-dired"
 1. Input the fd comand arguments (or with "C-u" to specify the initial directory or use the current working directly)
    #+DOWNLOADED: screenshot @ 2020-12-26 13:56:44
